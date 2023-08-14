@@ -1,0 +1,511 @@
+{
+  "admin_graphql_api_id": "gid://shopify/Order/3752251556017",
+  "app_id": 3256823,
+  "billing_address": {
+    "address1": "Liesenstr. 5b",
+    "address2": "",
+    "city": "Berlin",
+    "company": "",
+    "country": "Germany",
+    "country_code": "DE",
+    "first_name": "Nico",
+    "last_name": "Beyer",
+    "latitude": 52.537893,
+    "longitude": 13.3761463,
+    "name": "Nico Beyer",
+    "phone": "",
+    "province": null,
+    "province_code": null,
+    "zip": "10115"
+  },
+  "browser_ip": "31.17.209.66",
+  "buyer_accepts_marketing": false,
+  "cancel_reason": "other",
+  "cancelled_at": "2021-04-22T11:00:17+02:00",
+  "cart_token": null,
+  "checkout_id": 19810276868273,
+  "checkout_token": "20da5075503ec2a200417e8fb84f7523",
+  "client_details": {
+    "accept_language": "*",
+    "browser_height": 907,
+    "browser_ip": "31.17.209.66",
+    "browser_width": 1810,
+    "session_hash": null,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
+  },
+  "closed_at": null,
+  "confirmed": true,
+  "contact_email": "test@beyer-soehne.de",
+  "created_at": "2021-03-06T13:09:00+01:00",
+  "currency": "EUR",
+  "current_subtotal_price": "159.68",
+  "current_subtotal_price_set": {
+    "presentment_money": {
+      "amount": "159.68",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "159.68",
+      "currency_code": "EUR"
+    }
+  },
+  "current_total_additional_fees_set": null,
+  "current_total_discounts": "39.92",
+  "current_total_discounts_set": {
+    "presentment_money": {
+      "amount": "39.92",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "39.92",
+      "currency_code": "EUR"
+    }
+  },
+  "current_total_duties_set": null,
+  "current_total_price": "159.68",
+  "current_total_price_set": {
+    "presentment_money": {
+      "amount": "159.68",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "159.68",
+      "currency_code": "EUR"
+    }
+  },
+  "current_total_tax": "25.49",
+  "current_total_tax_set": {
+    "presentment_money": {
+      "amount": "25.49",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "25.49",
+      "currency_code": "EUR"
+    }
+  },
+  "customer": {
+    "accepts_marketing": false,
+    "accepts_marketing_updated_at": "2021-07-02T10:55:55+02:00",
+    "admin_graphql_api_id": "gid://shopify/Customer/2565335236",
+    "created_at": "2016-01-29T12:13:27+01:00",
+    "currency": "EUR",
+    "default_address": {
+      "address1": "Straße 1",
+      "address2": null,
+      "city": "Stadt",
+      "company": null,
+      "country": "Germany",
+      "country_code": "DE",
+      "country_name": "Germany",
+      "customer_id": 2565335236,
+      "default": true,
+      "first_name": "TEST",
+      "id": 8443177763083,
+      "last_name": "TEST",
+      "name": "TEST TEST",
+      "phone": null,
+      "province": null,
+      "province_code": null,
+      "zip": "12345"
+    },
+    "email": "test@beyer-soehne.de",
+    "email_marketing_consent": {
+      "consent_updated_at": "2021-07-02T10:55:55+02:00",
+      "opt_in_level": "single_opt_in",
+      "state": "not_subscribed"
+    },
+    "first_name": "TEST",
+    "id": 2565335236,
+    "last_name": "TEST",
+    "marketing_opt_in_level": null,
+    "multipass_identifier": null,
+    "note": "",
+    "phone": null,
+    "sms_marketing_consent": null,
+    "state": "enabled",
+    "tags": "VIP:manuell",
+    "tax_exempt": false,
+    "tax_exemptions": [],
+    "updated_at": "2023-06-07T14:47:11+02:00",
+    "verified_email": true
+  },
+  "customer_locale": "de",
+  "device_id": null,
+  "discount_applications": [
+    {
+      "allocation_method": "across",
+      "code": "SET_AQFDC86KT7C4",
+      "target_selection": "entitled",
+      "target_type": "line_item",
+      "type": "discount_code",
+      "value": "20.0",
+      "value_type": "percentage"
+    }
+  ],
+  "discount_codes": [
+    {
+      "amount": "39.92",
+      "code": "SET_AQFDC86KT7C4",
+      "type": "percentage"
+    }
+  ],
+  "email": "test@beyer-soehne.de",
+  "estimated_taxes": false,
+  "financial_status": "pending",
+  "fulfillment_status": "restocked",
+  "fulfillments": [],
+  "id": 3752251556017,
+  "landing_site": "/api/2020-07/graphql",
+  "landing_site_ref": null,
+  "line_items": [
+    {
+      "admin_graphql_api_id": "gid://shopify/LineItem/9878537339057",
+      "discount_allocations": [
+        {
+          "amount": "9.98",
+          "amount_set": {
+            "presentment_money": {
+              "amount": "9.98",
+              "currency_code": "EUR"
+            },
+            "shop_money": {
+              "amount": "9.98",
+              "currency_code": "EUR"
+            }
+          },
+          "discount_application_index": 0
+        }
+      ],
+      "duties": [],
+      "fulfillable_quantity": 1,
+      "fulfillment_service": "manual",
+      "fulfillment_status": "restocked",
+      "gift_card": false,
+      "grams": 206,
+      "id": 1,
+      "name": "Single",
+      "price": "49.90",
+      "price_set": {
+        "presentment_money": {
+          "amount": "49.90",
+          "currency_code": "EUR"
+        },
+        "shop_money": {
+          "amount": "49.90",
+          "currency_code": "EUR"
+        }
+      },
+      "product_exists": true,
+      "product_id": 1,
+      "properties": [],
+      "quantity": 3,
+      "requires_shipping": true,
+      "sku": "116537512",
+      "tax_lines": [
+        {
+          "channel_liable": false,
+          "price": "6.37",
+          "price_set": {
+            "presentment_money": {
+              "amount": "6.37",
+              "currency_code": "EUR"
+            },
+            "shop_money": {
+              "amount": "6.37",
+              "currency_code": "EUR"
+            }
+          },
+          "rate": 0.19,
+          "title": "DE MwSt"
+        }
+      ],
+      "taxable": true,
+      "title": "Single",
+      "total_discount": "0.00",
+      "total_discount_set": {
+        "presentment_money": {
+          "amount": "0.00",
+          "currency_code": "EUR"
+        },
+        "shop_money": {
+          "amount": "0.00",
+          "currency_code": "EUR"
+        }
+      },
+      "variant_id": 15,
+      "variant_inventory_management": "shopify",
+      "variant_title": "Normale Haut / Vollgröße 50 ml",
+      "vendor": "Beyer & Söhne"
+    },
+    {
+      "admin_graphql_api_id": "gid://shopify/LineItem/9878537404593",
+      "discount_allocations": [
+        {
+          "amount": "19.96",
+          "amount_set": {
+            "presentment_money": {
+              "amount": "19.96",
+              "currency_code": "EUR"
+            },
+            "shop_money": {
+              "amount": "19.96",
+              "currency_code": "EUR"
+            }
+          },
+          "discount_application_index": 0
+        }
+      ],
+      "duties": [],
+      "fulfillable_quantity": 2,
+      "fulfillment_service": "manual",
+      "fulfillment_status": "restocked",
+      "gift_card": false,
+      "grams": 206,
+      "id": 9878537404593,
+      "name": "Bundle - Trockene Haut / Vollgröße 50 ml",
+      "price": "49.90",
+      "price_set": {
+        "presentment_money": {
+          "amount": "49.90",
+          "currency_code": "EUR"
+        },
+        "shop_money": {
+          "amount": "49.90",
+          "currency_code": "EUR"
+        }
+      },
+      "product_exists": true,
+      "product_id": 2,
+      "properties": [],
+      "quantity": 2,
+      "requires_shipping": true,
+      "sku": "238847805",
+      "tax_lines": [
+        {
+          "channel_liable": false,
+          "price": "12.75",
+          "price_set": {
+            "presentment_money": {
+              "amount": "12.75",
+              "currency_code": "EUR"
+            },
+            "shop_money": {
+              "amount": "12.75",
+              "currency_code": "EUR"
+            }
+          },
+          "rate": 0.19,
+          "title": "DE MwSt"
+        }
+      ],
+      "taxable": true,
+      "title": "Bundle",
+      "total_discount": "0.00",
+      "total_discount_set": {
+        "presentment_money": {
+          "amount": "0.00",
+          "currency_code": "EUR"
+        },
+        "shop_money": {
+          "amount": "0.00",
+          "currency_code": "EUR"
+        }
+      },
+      "variant_id": 22,
+      "variant_inventory_management": "shopify",
+      "variant_title": "Trockene Haut / Vollgröße 50 ml",
+      "vendor": "Beyer & Söhne"
+    }
+  ],
+  "location_id": null,
+  "merchant_of_record_app_id": null,
+  "name": "154274",
+  "note": "TEST\n[ROBOT] Two Week payment reminder has been send on Tue, 30 Mar 2021 11:00:11 +0200\n[ROBOT] One Month payment reminder has been send on Tue, 06 Apr 2021 11:00:26 +0200\n[ROBOT] The Order was cancelled on Thu, 22 Apr 2021 11:00:17 +0200",
+  "note_attributes": [
+    {
+      "name": "invoicePath",
+      "value": "2021/03/TOTAL_PRICE_NULL.pdf"
+    }
+  ],
+  "number": 153274,
+  "order_number": 154274,
+  "order_status_url": "https://shop.beyer-soehne.de/959962/orders/b9989dcb99b5bc56c6d9d5933cd29fe6/authenticate?key=21eecb821e7e445df4370f8b9c2e0ea4",
+  "original_total_additional_fees_set": null,
+  "original_total_duties_set": null,
+  "payment_gateway_names": [
+    "Überweisung (Vorkasse)"
+  ],
+  "payment_terms": null,
+  "phone": null,
+  "presentment_currency": "EUR",
+  "processed_at": "2021-03-06T13:08:59+01:00",
+  "reference": null,
+  "referring_site": "https://www.beyer-soehne.de/produkte/squalan/?variant=31180011667504",
+  "refunds": [],
+  "shipping_address": {
+    "address1": "Straße 1",
+    "address2": "",
+    "city": "Stadt",
+    "company": "",
+    "country": "Germany",
+    "country_code": "DE",
+    "first_name": "Nico",
+    "last_name": "Beyer",
+    "latitude": 52.537893,
+    "longitude": 13.3761463,
+    "name": "Nico Beyer",
+    "phone": "",
+    "province": null,
+    "province_code": null,
+    "zip": "12345"
+  },
+  "shipping_lines": [
+    {
+      "carrier_identifier": null,
+      "code": "DHL",
+      "delivery_category": null,
+      "discount_allocations": [],
+      "discounted_price": "0.00",
+      "discounted_price_set": {
+        "presentment_money": {
+          "amount": "0.00",
+          "currency_code": "EUR"
+        },
+        "shop_money": {
+          "amount": "0.00",
+          "currency_code": "EUR"
+        }
+      },
+      "id": 3209618981041,
+      "phone": null,
+      "price": "0.00",
+      "price_set": {
+        "presentment_money": {
+          "amount": "0.00",
+          "currency_code": "EUR"
+        },
+        "shop_money": {
+          "amount": "0.00",
+          "currency_code": "EUR"
+        }
+      },
+      "requested_fulfillment_service_id": null,
+      "source": "shopify",
+      "tax_lines": [
+        {
+          "channel_liable": false,
+          "price": "0.00",
+          "price_set": {
+            "presentment_money": {
+              "amount": "0.00",
+              "currency_code": "EUR"
+            },
+            "shop_money": {
+              "amount": "0.00",
+              "currency_code": "EUR"
+            }
+          },
+          "rate": 0.19,
+          "title": "DE MwSt"
+        }
+      ],
+      "title": "DHL"
+    }
+  ],
+  "source_identifier": null,
+  "source_name": "web",
+  "source_url": null,
+  "subtotal_price": "159.68",
+  "subtotal_price_set": {
+    "presentment_money": {
+      "amount": "159.68",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "159.68",
+      "currency_code": "EUR"
+    }
+  },
+  "tags": "",
+  "tax_lines": [
+    {
+      "channel_liable": false,
+      "price": "25.49",
+      "price_set": {
+        "presentment_money": {
+          "amount": "25.49",
+          "currency_code": "EUR"
+        },
+        "shop_money": {
+          "amount": "25.49",
+          "currency_code": "EUR"
+        }
+      },
+      "rate": 0.19,
+      "title": "DE MwSt"
+    }
+  ],
+  "taxes_included": true,
+  "test": false,
+  "token": "b9989dcb99b5bc56c6d9d5933cd29fe6",
+  "total_discounts": "39.92",
+  "total_discounts_set": {
+    "presentment_money": {
+      "amount": "39.92",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "39.92",
+      "currency_code": "EUR"
+    }
+  },
+  "total_line_items_price": "199.60",
+  "total_line_items_price_set": {
+    "presentment_money": {
+      "amount": "199.60",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "199.60",
+      "currency_code": "EUR"
+    }
+  },
+  "total_outstanding": "159.68",
+  "total_price": "159.68",
+  "total_price_set": {
+    "presentment_money": {
+      "amount": "159.68",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "159.68",
+      "currency_code": "EUR"
+    }
+  },
+  "total_shipping_price_set": {
+    "presentment_money": {
+      "amount": "0.00",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "0.00",
+      "currency_code": "EUR"
+    }
+  },
+  "total_tax": "25.49",
+  "total_tax_set": {
+    "presentment_money": {
+      "amount": "25.49",
+      "currency_code": "EUR"
+    },
+    "shop_money": {
+      "amount": "25.49",
+      "currency_code": "EUR"
+    }
+  },
+  "total_tip_received": "0.00",
+  "total_weight": 824,
+  "updated_at": "2023-06-07T14:47:43+02:00",
+  "user_id": null
+}

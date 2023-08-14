@@ -1,0 +1,99 @@
+---
+kind: pipeline
+type: docker
+name: npm_pms_0.0.1
+
+## Secrets in use
+# NPM_TOKEN: Token with read rights to @nbeyer/* repositories and publish for this repo
+# AWS_ACCESS_KEY_ID
+# AWS_SECRET_ACCESS_KEY
+# AWS_DEFAULT_REGION
+
+trigger:
+  event:
+    - push
+
+steps:
+  - name: restore-cache-with-key
+    image: meltwater/drone-cache:dev
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: AWS_SECRET_ACCESS_KEY
+      AWS_DEFAULT_REGION:
+        from_secret: AWS_DEFAULT_REGION
+    settings:
+      restore: true
+      bucket: beyer.dev.cache
+      region: AWS_DEFAULT_REGION
+      archive_format: "gzip"
+      cache_key: '{{ .Repo.Name }}'
+      mount:
+        - 'node_modules'
+
+  - name: build
+    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node16-aws
+    commands:
+      - node -v
+      - npm -v
+      - tsc -v
+      - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+      - npm i
+      - git add package-lock.json && git commit -m "package-lock [CI SKIP]" || true
+      - tsc
+    environment:
+      NPM_TOKEN:
+        from_secret: NPM_TOKEN
+
+  - name: unittest
+    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node16-aws
+    commands:
+      - npm test
+    environment:
+      MONGO_URL: mongodb://mongo/
+      AWS_ACCESS_KEY_ID:
+        from_secret: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: AWS_SECRET_ACCESS_KEY
+      AWS_DEFAULT_OUTPUT: json
+      AWS_DEFAULT_REGION: AWS_DEFAULT_REGION
+
+  - name: commit
+    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node16-aws
+    commands:
+      - npm run commit
+    environment:
+      ServiceDbEndpoint:
+        from_secret: ServiceDbEndpoint
+    when:
+      branch:
+        - master
+
+  - name: rebuild-cache
+    image: meltwater/drone-cache:dev
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: AWS_SECRET_ACCESS_KEY
+      AWS_DEFAULT_REGION:
+        from_secret: AWS_DEFAULT_REGION
+    settings:
+      rebuild: true
+      bucket: beyer.dev.cache
+      region: AWS_DEFAULT_REGION
+      archive_format: "gzip"
+      cache_key: '{{ .Repo.Name }}'
+      mount:
+        - 'node_modules'
+
+services:
+  - name: mongo
+    image: mongo:4.2
+
+---
+kind: signature
+hmac: a18b54d5d75cbed4d95dd0df4cb5ea0d843da4d2d6611e11ee89c246aa7975da
+
+...

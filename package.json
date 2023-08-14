@@ -1,0 +1,51 @@
+{
+  "name": "@nbeyer/pms2-process-shopify",
+  "version": "0.0.1",
+  "description": "Process to sync Shopify with CustomerDb",
+  "main": "index.js",
+  "scripts": {
+    "commit": "node ./lib/src/index.js",
+    "test": "mocha ./lib/test/"
+  },
+  "author": "Nico Beyer",
+  "license": "None",
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/lodash": "^4.14.197",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.5.0",
+    "@types/traverse": "^0.6.32",
+    "aws-sdk": "^2.1435.0",
+    "chai": "^4.3.7",
+    "lodash": "^4.17.21",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "nativebird": "^1.2.11"
+  },
+  "dependencies": {
+    "@nbeyer/pms-event": "^1.1.29",
+    "@nbeyer/pms-mixin-messagebus": "^1.3.16",
+    "@nbeyer/pms-noop": "^1.1.10",
+    "@nbeyer/pms-process-creator": "^1.2.41",
+    "@nbeyer/pms-test-helper": "^1.0.36",
+    "@nbeyer/pms2-shopify": "^1.1.15",
+    "traverse": "^0.6.7"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "ignorePatterns": [
+      "lib/**",
+      "node_modules/**"
+    ]
+  }
+}

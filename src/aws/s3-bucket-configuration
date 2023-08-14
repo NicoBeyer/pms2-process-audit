@@ -1,0 +1,51 @@
+[
+{
+    "Owner": {
+        "DisplayName": "nico",
+        "ID": "1c2bdb5b730828fda44c666b77ee482c584be179e879f1ad0d974ea9a9de8497"
+    },
+    "Grants": [
+        {
+            "Grantee": {
+                "DisplayName": "nico",
+                "ID": "1c2bdb5b730828fda44c666b77ee482c584be179e879f1ad0d974ea9a9de8497",
+                "Type": "CanonicalUser"
+            },
+            "Permission": "FULL_CONTROL"
+        }
+    ]
+},
+{
+    "Payer": "BucketOwner"
+},
+{
+    "Status": "Enabled",
+    "MFADelete": "Disabled"
+},
+{
+    "ServerSideEncryptionConfiguration": {
+        "Rules": [
+            {
+                "ApplyServerSideEncryptionByDefault": {
+                    "SSEAlgorithm": "aws:kms:dsse",
+                    "KMSMasterKeyID": "arn:aws:kms:eu-west-1:095565711062:key/mrk-88256aca743d4dcea6455a6f3867d973"
+                },
+                "BucketKeyEnabled": false
+            }
+        ]
+    }
+},
+{
+    "PublicAccessBlockConfiguration": {
+        "BlockPublicAcls": true,
+        "IgnorePublicAcls": true,
+        "BlockPublicPolicy": true,
+        "RestrictPublicBuckets": true
+    }
+},
+{
+    "ObjectLockConfiguration": {
+        "ObjectLockEnabled": "Enabled"
+    }
+}
+]

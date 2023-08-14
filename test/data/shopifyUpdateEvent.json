@@ -1,0 +1,102 @@
+{
+  "resource": "/{instance}/{proxy+}",
+  "path": "/pms2-events/pms2-shopify-webhook/order",
+  "httpMethod": "POST",
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Cache-Control": "no-cache",
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "DE",
+    "Content-Type": "application/pdf",
+    "Host": "api.beyer-soehne.de",
+    "Postman-Token": "95b932c3-e66e-409b-88b8-ea1a2d12c3e9",
+    "User-Agent": "PostmanRuntime/7.28.4",
+    "Via": "1.1 f7b7cf90592cf6a380fd34cc45e9c4b5.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "SdhZ8HaaIUrdYEmIpojUqsOXfo2JbMkwBEvjsWPqX7SFeH2XuXONww==",
+    "X-Amzn-Trace-Id": "Root=1-61d844f6-66b9e198216964765cde50b7",
+    "x-api-key": "tKqeTziiuz5ptV32xhOIK32hFHLgWq2O9HfAIywg",
+    "X-Forwarded-For": "80.155.5.138, 70.132.1.131",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https",
+    "X-Shopify-Api-Version": "2021-01",
+    "X-Shopify-Hmac-Sha256": "cmRYAHF0x5FqDsdihSe8SeJ8qJ34Ij72gHkpEj1uqWs=",
+    "X-Shopify-Order-Id": "3752251556017",
+    "X-Shopify-Shop-Domain": "beyer-soehne.myshopify.com",
+    "X-Shopify-Test": "false",
+    "X-Shopify-Topic": "orders/updated",
+    "X-Shopify-Webhook-Id": "c191e599-fbef-4484-84c9-b3fdde75e040"
+  },
+  "multiValueHeaders": {
+    "Accept": [ "*/*" ],
+    "Accept-Encoding": [ "gzip, deflate, br" ],
+    "Cache-Control": [ "no-cache" ],
+    "CloudFront-Forwarded-Proto": [ "https" ],
+    "CloudFront-Is-Desktop-Viewer": [ "true" ],
+    "CloudFront-Is-Mobile-Viewer": [ "false" ],
+    "CloudFront-Is-SmartTV-Viewer": [ "false" ],
+    "CloudFront-Is-Tablet-Viewer": [ "false" ],
+    "CloudFront-Viewer-Country": [ "DE" ],
+    "Content-Type": [ "application/pdf" ],
+    "Host": [ "api.beyer-soehne.de" ],
+    "Postman-Token": [ "95b932c3-e66e-409b-88b8-ea1a2d12c3e9" ],
+    "User-Agent": [ "PostmanRuntime/7.28.4" ],
+    "Via": [
+      "1.1 f7b7cf90592cf6a380fd34cc45e9c4b5.cloudfront.net (CloudFront)"
+    ],
+    "X-Amz-Cf-Id": [ "SdhZ8HaaIUrdYEmIpojUqsOXfo2JbMkwBEvjsWPqX7SFeH2XuXONww==" ],
+    "X-Amzn-Trace-Id": [ "Root=1-61d844f6-66b9e198216964765cde50b7" ],
+    "x-api-key": [ "tKqeTziiuz5ptV32xhOIK32hFHLgWq2O9HfAIywg" ],
+    "X-Forwarded-For": [ "80.155.5.138, 70.132.1.131" ],
+    "X-Forwarded-Port": [ "443" ],
+    "X-Forwarded-Proto": [ "https" ]
+  },
+  "queryStringParameters": {
+    "key": "6b894c031583aaa4b0281af883dc4b0fa414aff59ba843316ea7dbad4264c274"
+  },
+  "multiValueQueryStringParameters": {
+    "key": [
+      "6b894c031583aaa4b0281af883dc4b0fa414aff59ba843316ea7dbad4264c274"
+    ]
+  },
+  "pathParameters": { "proxy": "proxy", "instance": "pms2-shopify-audit" },
+  "stageVariables": { "stage": "test" },
+  "requestContext": {
+    "resourceId": "e7kyxw",
+    "resourcePath": "/{instance}/{proxy+}",
+    "httpMethod": "POST",
+    "extendedRequestId": "Lk-2fGEyDoEFeNA=",
+    "requestTime": "07/Jan/2022:13:49:42 +0000",
+    "path": "/test/event-invoices/2021/10/192366.pdf",
+    "accountId": "095565711062",
+    "protocol": "HTTP/1.1",
+    "stage": "test",
+    "domainPrefix": "api",
+    "requestTimeEpoch": 1641563382180,
+    "requestId": "61ac4591-44bc-443c-ba8b-7e4afc07df47",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "cognitoIdentityId": null,
+      "apiKey": "tKqeTziiuz5ptV32xhOIK32hFHLgWq2O9HfAIywg",
+      "principalOrgId": null,
+      "cognitoAuthenticationType": null,
+      "userArn": null,
+      "apiKeyId": "nd3sc4hube",
+      "userAgent": "PostmanRuntime/7.28.4",
+      "accountId": null,
+      "caller": null,
+      "sourceIp": "80.155.5.138",
+      "accessKey": null,
+      "cognitoAuthenticationProvider": null,
+      "user": null
+    },
+    "domainName": "api.beyer-soehne.de",
+    "apiId": "n1gdv6f6s8"
+  },
+  "body": "",
+  "isBase64Encoded": false
+}
