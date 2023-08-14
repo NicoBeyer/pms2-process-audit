@@ -4,7 +4,7 @@ import {Shopify} from "@nbeyer/pms2-shopify";
 import {MessageBusInstanceConfiguration} from "@nbeyer/pms-mixin-messagebus";
 import {shopify_orders} from "./subprocesses/shopify_orders";
 
-export const pc = new ProcessCreator({name: "pms2-process-shopify"});
+export const pc = new ProcessCreator({name: "pms2-process-audit"});
 pc.setErrorQueue()
 .addInstance(new ServiceInstance<Event>(Event, {
     executedByPms: true,
