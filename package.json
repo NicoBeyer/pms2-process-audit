@@ -1,5 +1,5 @@
 {
-  "name": "@nbeyer/pms2-process-shopify",
+  "name": "@nbeyer/pms2-process-audit",
   "version": "0.0.1",
   "description": "Process to sync Shopify with CustomerDb",
   "main": "index.js",
