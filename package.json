@@ -30,6 +30,7 @@
     "@nbeyer/pms-noop": "^1.1.14",
     "@nbeyer/pms-process-creator": "^1.2.41",
     "@nbeyer/pms-test-helper": "^1.1.5",
+    "@nbeyer/pms2-delay": "^1.0.2",
     "@nbeyer/pms2-shopify": "^1.1.15",
     "traverse": "^0.6.7"
   },
