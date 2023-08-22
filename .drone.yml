@@ -72,6 +72,12 @@ steps:
     environment:
       ServiceDbEndpoint:
         from_secret: ServiceDbEndpoint
+      SHOPIFY_API_KEY:
+        from_secret: SHOPIFY_API_KEY
+      SHOPIFY_API_SECRET:
+        from_secret: SHOPIFY_API_SECRET
+      SHOPIFY_TOKEN:
+        from_secret: SHOPIFY_TOKEN
     when:
       branch:
         - master
@@ -100,6 +106,6 @@ services:
 
 ---
 kind: signature
-hmac: 35d1c23c2f0bd09f71ac2178d50b5aed6b5fc65548732ddd99aa9e256c529bb6
+hmac: dcf64a71f4624262259792dd1580c10c3ad065b559f18924ffe67915609dd64e
 
 ...
