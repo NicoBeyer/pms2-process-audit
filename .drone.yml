@@ -33,7 +33,7 @@ steps:
         - 'node_modules'
 
   - name: build
-    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node16-aws
+    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node18-aws
     commands:
       - node -v
       - npm -v
@@ -47,7 +47,7 @@ steps:
         from_secret: NPM_TOKEN
 
   - name: unittest
-    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node16-aws
+    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node18-aws
     commands:
       - npm test
     environment:
@@ -60,12 +60,18 @@ steps:
       AWS_DEFAULT_REGION: AWS_DEFAULT_REGION
 
   - name: commit
-    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node16-aws
+    image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node18-aws
     commands:
       - npm run commit
     environment:
       ServiceDbEndpoint:
         from_secret: ServiceDbEndpoint
+      SHOPIFY_API_KEY:
+        from_secret: SHOPIFY_API_KEY
+      SHOPIFY_API_SECRET:
+        from_secret: SHOPIFY_API_SECRET
+      SHOPIFY_TOKEN:
+        from_secret: SHOPIFY_TOKEN
     when:
       branch:
         - master
@@ -94,6 +100,6 @@ services:
 
 ---
 kind: signature
-hmac: a18b54d5d75cbed4d95dd0df4cb5ea0d843da4d2d6611e11ee89c246aa7975da
+hmac: 5a4ee9225a43e3cdc9c84b610263fafab97b32d9b682ced945e1380f21273e9d
 
 ...
