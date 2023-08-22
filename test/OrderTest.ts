@@ -76,9 +76,9 @@ describe("OrderTest", async function () {
 
     });
 
-    const shopifyOrder = JSON.parse(fs.readFileSync("./test/data/order-test/shopifyOrder.json").toString());
-    const orderUpdateEvent = getShopifyUpdateEvent(_.merge(_.cloneDeep(shopifyOrder), {
-        created_at: new Date().toISOString()
-    }), "order");
-
 });
+
+const shopifyOrder = JSON.parse(fs.readFileSync("./test/data/order-test/shopifyOrder.json").toString());
+const orderUpdateEvent = getShopifyUpdateEvent(_.merge(_.cloneDeep(shopifyOrder), {
+    created_at: new Date().toISOString()
+}), "order");

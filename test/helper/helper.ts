@@ -16,7 +16,7 @@ export function getShopifyUpdateEvent(shopifyObject: Record<string, unknown>, pr
 }
 
 export function getHmac(body: string) {
-    return crypto.createHmac('sha256', "256c77cef0c1227c721d8d7494b1ff4a").update(body).digest('base64');
+    return crypto.createHmac('sha256', process.env.SHOPIFY_API_SECRET).update(body).digest('base64');
 }
 
 

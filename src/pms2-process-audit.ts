@@ -14,9 +14,9 @@ pc.setErrorQueue()
     instanceName: "pms2-shopify",
     shopifyConfig: {
         shop_name: "beyer-soehne",
-        token: "ade58603bc1953b4e4a887f647848d68",
-        api_secret: "687c555cbadf46d39c52b7079da5e53f",
-        api_key: "93fd7e535faa71c788b33ab67ebbc397",
+        token: process.env.SHOPIFY_API_KEY,
+        api_secret: process.env.SHOPIFY_API_SECRET,
+        api_key: process.env.SHOPIFY_API_KEY,
         scope: "write_orders,write_products,write_customers",
         version: "2023-04"
     }
