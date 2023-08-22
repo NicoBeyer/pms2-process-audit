@@ -1,7 +1,11 @@
 import {ProcessCreator, ServiceInstance} from "@nbeyer/pms-process-creator";
-import {S3QueueConfig} from "@nbeyer/pms-mixin-messagebus";
+import {S3Message, S3QueueConfig} from "@nbeyer/pms-mixin-messagebus";
 import {Noop} from "@nbeyer/pms-noop";
 import {addFieldsValidateWebhook} from "../helper/transformations";
+
+type ToAny<T> = {
+    [K in keyof T]: any;
+};
 
 export function shopify_orders(pc: ProcessCreator) {
     pc.addInstance(new ServiceInstance<Noop>(Noop, {instanceName: "audit-noop-shopify"}))
@@ -44,8 +48,23 @@ export function shopify_orders(pc: ProcessCreator) {
                         ".json"
                     ]
                 },
-                Body: {$base64Encode: {$json: "$order"}}
-            }
-        }]
+                Body: {$base64Encode: {$json: "$order"}},
+                ContentType: "application/json",
+                Metadata: {
+                    "order-id": "$order.id",
+                    "plannedRetentionDate": {$concat: [
+                        {$toString: {
+                            $add: [11,
+                                {$year: {
+                                    date: {$dateFromString: {
+                                        dateString: "$order.created_at"
+                                    }}
+                                }}
+                            ]}
+                        },
+                        "-01-01"
+                    ]}
+                }
+        } as ToAny<S3Message>}]
     }, "OrderUpdate Step 1: Validate Webhook and encrypt private data.");
 }

@@ -5,7 +5,7 @@ import {pc} from "../src/pms2-process-audit";
 import * as _ from "lodash";
 import {Noop} from "@nbeyer/pms-noop";
 import {getShopifyUpdateEvent} from "./helper/helper";
-import {S3} from "aws-sdk";
+import {S3Client, GetObjectCommand} from "@aws-sdk/client-s3";
 
 process.env.TRACE = "";
 process.env.AWS_DEFAULT_REGION = process.env.AWS_DEFAULT_REGION || "eu-west-1";
@@ -51,15 +51,14 @@ describe("OrderTest", async function () {
 
         const mockS3 = pc.pmsMock.AWS.S3;
 
-        const s3 = new S3();
+        const s3 = new S3Client();
 
-        const res = await s3.getObject({
+        const res = await s3.send(new GetObjectCommand({
             Bucket: "beyer.prod.audit.vault",
             Key
-        }).promise();
+        }));
 
-        assert.instanceOf(res.Body, Buffer);
-        const bodyStr = res.Body.toString("utf-8");
+        const bodyStr = await res.Body.transformToString("utf-8");
         const body = JSON.parse(bodyStr);
 
         assert.deepEqual(body, order);
