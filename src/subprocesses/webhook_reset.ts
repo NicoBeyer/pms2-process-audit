@@ -11,6 +11,17 @@ export function webhook_reset(pc: ProcessCreator) {
     .addInstance(new ServiceInstance<Noop>(Noop, {
         instanceName: "audit-webhook-reset-noop",
     }))
+    .connectInstance("audit-webhook-reset", "audit-webhook-reset-noop", {
+        type: "SQSQueue",
+        transformation: [
+            {$match: {
+                "type": "webhook-check"
+            }},
+            {$project: {
+                "type": ""
+            }}
+        ]
+    })
     .connectInstance("audit-webhook-reset-noop", "pms2-shopify", {
         type: "SQSQueue",
         transformation: [
