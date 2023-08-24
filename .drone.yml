@@ -62,8 +62,8 @@ steps:
         from_secret: SHOPIFY_API_KEY
       SHOPIFY_API_SECRET:
         from_secret: SHOPIFY_API_SECRET
-      SHOPIFY_TOKEN:
-        from_secret: SHOPIFY_TOKEN
+      MONGO_DELAY_URI:
+        from_secret: MONGO_DELAY_URI_TEST
 
   - name: commit
     image: 095565711062.dkr.ecr.eu-west-1.amazonaws.com/beyer.dev.drone:node18-aws
@@ -78,6 +78,8 @@ steps:
         from_secret: SHOPIFY_API_SECRET
       SHOPIFY_TOKEN:
         from_secret: SHOPIFY_TOKEN
+      MONGO_DELAY_URI:
+        from_secret: MONGO_DELAY_URI_PROD
     when:
       branch:
         - master
@@ -106,6 +108,6 @@ services:
 
 ---
 kind: signature
-hmac: dcf64a71f4624262259792dd1580c10c3ad065b559f18924ffe67915609dd64e
+hmac: 5e065aea3b099ca4002e605f9aff5a7ed84c3f6a5bf9e55a0ae0244aa8bf6e4d
 
 ...

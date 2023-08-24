@@ -51,7 +51,7 @@ export function shopify_orders(pc: ProcessCreator) {
                 Body: {$base64Encode: {$json: "$order"}},
                 ContentType: "application/json",
                 Metadata: {
-                    "order-id": "$order.id",
+                    "order-id": {$toString: "$order.id"},
                     "plannedRetentionDate": {$concat: [
                         {$toString: {
                             $add: [11,
