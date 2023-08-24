@@ -10,13 +10,14 @@
   "author": "Nico Beyer",
   "license": "None",
   "devDependencies": {
-    "@aws-sdk/client-s3": "^3.395.0",
+    "@aws-sdk/client-s3": "^3.398.0",
     "@types/chai": "^4.3.5",
     "@types/lodash": "^4.14.197",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.5.2",
+    "@types/node": "^20.5.4",
     "@types/traverse": "^0.6.32",
-    "aws-sdk": "^2.1441.0",
+    "aws-sdk": "^2.1443.0",
+    "bs-odm": "^1.2.6",
     "chai": "^4.3.7",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
@@ -25,13 +26,14 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@nbeyer/pms-event": "^1.1.29",
+    "@aws-sdk/util-utf8-node": "^3.259.0",
+    "@nbeyer/pms-event": "^1.1.30",
     "@nbeyer/pms-mixin-messagebus": "^1.4.2",
     "@nbeyer/pms-noop": "^1.1.14",
-    "@nbeyer/pms-process-creator": "^1.2.41",
+    "@nbeyer/pms-process-creator": "^1.2.44",
     "@nbeyer/pms-test-helper": "^1.1.5",
-    "@nbeyer/pms2-delay": "^1.0.2",
-    "@nbeyer/pms2-shopify": "^1.1.15",
+    "@nbeyer/pms2-delay": "^1.0.3",
+    "@nbeyer/pms2-shopify": "^1.2.1",
     "traverse": "^0.6.7"
   },
   "eslintConfig": {

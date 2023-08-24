@@ -9,6 +9,8 @@ import {S3Client, GetObjectCommand} from "@aws-sdk/client-s3";
 
 process.env.TRACE = "";
 process.env.AWS_DEFAULT_REGION = process.env.AWS_DEFAULT_REGION || "eu-west-1";
+process.env.ServiceDbEndpoint = "https://api.beyer-soehne.de";
+process.env.MONGO_URL = process.env.MONGO_URL || "mongodb://localhost/";
 
 describe("OrderTest", async function () {
 

@@ -1,7 +1,6 @@
 import * as fs from "fs";
 import * as crypto from "crypto";
 
-
 export function getShopifyUpdateEvent(shopifyObject: Record<string, unknown>, proxy: string) {
     const event = JSON.parse(fs.readFileSync("./test/data/shopifyUpdateEvent.json").toString());
 
@@ -17,6 +16,10 @@ export function getShopifyUpdateEvent(shopifyObject: Record<string, unknown>, pr
 
 export function getHmac(body: string) {
     return crypto.createHmac('sha256', process.env.SHOPIFY_API_SECRET).update(body).digest('base64');
+}
+
+export type toAny<T> = {
+[P in keyof T]: any;
 }
 
 
