@@ -20,9 +20,6 @@ pc.setErrorQueue()
         api_key: process.env.SHOPIFY_API_KEY,
         scope: "write_orders,write_products,write_customers",
         version: "2023-07"
-    },
-    owner: {
-        process: "pms2-process-shopify"
     }
 }));
 
