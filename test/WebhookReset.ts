@@ -5,14 +5,14 @@ import {InputDelayMessage} from "@nbeyer/pms2-delay/lib/src/model/messages/Input
 import {fakeClock} from "./helper/FakeClock";
 import {ServiceInstance} from "@nbeyer/pms-process-creator";
 import {Noop} from "@nbeyer/pms-noop";
+import {DB} from "@nbeyer/beyer-pms2-customerdb";
+import * as ENV from "./helper/env";
 
 process.env.AWS_DEFAULT_REGION = process.env.AWS_DEFAULT_REGION || "eu-west-1";
 process.env.TRACE = "";
 describe("WebhookReset", async function () {
 
     it("getWebhooks", async function () {
-
-        await pc.startTest();
 
         const shopify = pc.getInstance("pms2-shopify");
         const noop = pc.getInstance("noop-unittest");
@@ -32,13 +32,9 @@ describe("WebhookReset", async function () {
             assert.isTrue(_.isArray(msg.result.webhook) || _.isArray(msg.result.webhooks));
         }
 
-        pc.endTest();
-
     });
 
     it("triggers Webhook Check every 3 hours", async function () {
-
-        await pc.startTest();
 
         const delay = pc.getInstance("delay-webhook-check");
         const noop = pc.getInstance("audit-webhook-reset-noop");
@@ -90,8 +86,6 @@ describe("WebhookReset", async function () {
 
         assert.equal(checks, 3);
 
-        pc.endTest();
-
     });
 
     before(async function () {
@@ -101,14 +95,18 @@ describe("WebhookReset", async function () {
         .connectInstance("pms2-shopify", "noop-unittest", {
             type: "SQSQueue"
         })
+
+        await DB.connect(ENV.MONGO);
+        await DB.disconnect();
     });
 
-    after(async function () {
-
+    afterEach(async function () {
+        pc.pmsMock.AWS.resetAll();
+        pc.endTest();
     });
 
     beforeEach(async function () {
-
+        await pc.startTest();
     });
 
 });

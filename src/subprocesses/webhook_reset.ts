@@ -101,6 +101,45 @@ export function webhook_reset(pc: ProcessCreator) {
                 }
             } as Partial<ApiCallMessage>}
         ]
+    })
+    .connectInstance("pms2-shopify", "pms2-shopify", {
+        type: "SQSQueue",
+        transformation: [
+            {$match: {
+                    "webhook-reset-step": "webhook-check",
+                    "result.webhooks": {$ne: null}
+                }},
+            {$addFields: {
+                    hasWebhook: {$reduce: {
+                            input: "$result.webhooks",
+                            initialValue: false,
+                            in: {
+                                $or: ["$$value", {
+                                    $and: [
+                                        {$eq: ["$$this.address", "https://api.beyer-soehne.de/pms2-events/pms2-shopify-audit/transaction"]},
+                                        {$eq: ["$$this.topic", "order_transactions/create"]},
+                                    ]
+                                }]
+                            }
+                        }}
+                }},
+            {$match: {
+                hasWebhook: false
+            }},
+            {$project: {
+                    "webhook-reset-step": "webhook-create",
+                    type: "ApiCall",
+                    method: "post",
+                    path: "webhooks.json",
+                    body: {
+                        webhook: {
+                            topic: "order_transactions/create",
+                            address: "https://api.beyer-soehne.de/pms2-events/pms2-shopify-audit/transaction",
+                            format: "json"
+                        }
+                    }
+                } as Partial<ApiCallMessage>}
+        ]
     });
 
 }

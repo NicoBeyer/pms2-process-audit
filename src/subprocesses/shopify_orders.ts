@@ -33,38 +33,48 @@ export function shopify_orders(pc: ProcessCreator) {
             Path: "shopify/orders/",
             deleteAfterUse: false
         } as S3QueueConfig,
-        transformation: s3Transformation
+        transformation: [
+            {$addFields: {
+                Key: {
+                    $concat: [
+                        {$substr: ["$order.created_at", 0, 4]}, // year
+                        "/",
+                        {$substr: ["$order.created_at", 5, 2]}, // month
+                        "/",
+                        {$substr: ["$order.created_at", 8, 2]}, // day
+                        "/",
+                        "$order.name",
+                        "/",
+                        "$order.name",
+                        ".json"
+                    ]
+                },
+                Body: {$base64Encode: {$json: "$order"}},
+                created_at: "$order.created_at"
+            }},
+            s3Projection
+        ]
     }, "OrderUpdate Step 1: Validate Webhook and encrypt private data.");
 }
 
-export const s3Transformation = [
+export const s3Projection =
     {$project: {
         del: 1,
-        Key: {
-            $concat: [
-                {$substr: ["$order.created_at", 0, 4]}, // year
-                "/",
-                {$substr: ["$order.created_at", 5, 2]}, // month
-                "/",
-                "$order.name",
-                "/",
-                "$order.name",
-                ".json"
-            ]
-        },
-        Body: {$base64Encode: {$json: "$order"}},
+        Key: "$Key",
+        Body: "$Body",
         ContentType: "application/json",
-        Metadata: {
-            "order-id": {$toString: "$order.id"},
+        Metadata: {$mergeObjects:["$Metadata", {
+            "order_id": {$toString: "$order.id"},
             "plannedRetentionDate": {$concat: [
                 {$toString: {
                     $add: [11,
                         {$year: {$dateFromString: {
-                            dateString: "$order.created_at"
+                            dateString: "$created_at"
                         }}}
                     ]}
                 },
                 "-01-01"
             ]}
-        }
-    } as ToAny<S3Message>}];
+        }]}
+    } as ToAny<S3Message>};
+
