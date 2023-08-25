@@ -5,7 +5,7 @@ import {pc} from "../src/pms2-process-audit";
 import * as _ from "lodash";
 import {Noop} from "@nbeyer/pms-noop";
 import {getShopifyUpdateEvent} from "./helper/helper";
-import {S3Client, GetObjectCommand} from "@aws-sdk/client-s3";
+import {GetObjectCommand, S3Client} from "@aws-sdk/client-s3";
 
 process.env.TRACE = "";
 process.env.AWS_DEFAULT_REGION = process.env.AWS_DEFAULT_REGION || "eu-west-1";
@@ -63,6 +63,11 @@ describe("OrderTest", async function () {
         const bodyStr = await res.Body.transformToString("utf-8");
         const body = JSON.parse(bodyStr);
 
+        assert.deepEqual(res.Metadata, {
+            "order-id": "3752251556017",
+            "plannedRetentionDate": (new Date().getFullYear() + 11) + "-01-01"
+        })
+
         assert.deepEqual(body, order);
     });
 
@@ -75,7 +80,6 @@ describe("OrderTest", async function () {
     });
 
     before(async function() {
-
     });
 
 });
