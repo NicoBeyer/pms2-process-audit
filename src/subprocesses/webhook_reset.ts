@@ -1,7 +1,7 @@
 import {ProcessCreator, ServiceInstance} from "@nbeyer/pms-process-creator";
 import {Delay, DelayInstanceConfiguraiton} from "@nbeyer/pms2-delay";
 import {Noop} from "@nbeyer/pms-noop";
-import {ApiCallMessage} from "@nbeyer/pms2-shopify/lib/src/model/messages/input/ApiCall";
+import {ApiCallMessage} from "@nbeyer/pms2-shopify";
 import {InputDelayMessage} from "@nbeyer/pms2-delay/lib/src/model/messages/Input/InputDelayMessage";
 import {toAny} from "../../test/helper/helper";
 
