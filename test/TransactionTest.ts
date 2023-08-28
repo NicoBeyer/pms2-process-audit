@@ -46,6 +46,9 @@ describe("TransactionTest", async function () {
         msgs = noopDebug.getReceivedMessages();
         console.log(msgs);
 
+        assert.lengthOf(msgs, 1);
+        assert.equal(msgs[0].type, "FOUND");
+
         const Key = orderKey.replace(/\d+.json/g, "transactions/" + transaction.id + ".json");
 
         const mockS3 = pc.pmsMock.AWS.S3;
@@ -64,7 +67,7 @@ describe("TransactionTest", async function () {
             "order_id": "3752251556017",
             "transaction_id": transaction.id + "",
             "plannedRetentionDate": (new Date().getFullYear() + 11) + "-01-01"
-        })
+        });
 
         assert.deepEqual(body, transaction);
     });
@@ -101,6 +104,7 @@ async function addOrder() {
 
     const coll = await DB.collection("orders");
 
+    await coll.deleteMany({});
     await coll.insertOne(shopifyOrder);
 
     await DB.disconnect();
