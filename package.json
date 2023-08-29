@@ -31,6 +31,7 @@
     "@nbeyer/pms-mixin-messagebus": "^1.4.2",
     "@nbeyer/pms-noop": "^1.1.15",
     "@nbeyer/pms-process-creator": "^1.2.44",
+    "@nbeyer/pms-serviceinstance": "^2.2.4",
     "@nbeyer/pms-test-helper": "^1.1.6",
     "@nbeyer/pms2-delay": "^1.0.3",
     "@nbeyer/pms2-shopify": "^1.2.1",
