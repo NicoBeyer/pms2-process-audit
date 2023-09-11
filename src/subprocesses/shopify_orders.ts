@@ -24,7 +24,14 @@ export function shopify_orders(pc: ProcessCreator) {
             {$project: {
                 order: {$json: "$body"}
             }}
-        ]
+        ],
+        resultTransformation: {$project: {
+            statusCode: {$literal: 200},
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: '{"status": "success"}'
+        }}
     })
     pc.connectInstance("audit-noop-shopify", null, {
         type: "S3Queue",

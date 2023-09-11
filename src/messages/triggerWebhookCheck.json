@@ -1,0 +1,6 @@
+{
+  "webhook-reset-step": "webhook-check",
+  "type": "ApiCall",
+  "method": "get",
+  "path": "webhooks.json"
+}

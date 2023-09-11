@@ -36,7 +36,14 @@ export function shopify_transactions(pc: ProcessCreator) {
                 },
                 transaction: "$transaction"
             } as toAny<FindMessage>}
-        ]
+        ],
+        resultTransformation: {$project: {
+            statusCode: {$literal: 200},
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: '{"status": "success"}'
+        }}
     })
 
     // create order path and store to s3

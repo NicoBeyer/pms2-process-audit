@@ -19,9 +19,9 @@ describe("WebhookReset", async function () {
 
         shopify.sendMessage({
             "webhook-reset-step": "webhook-check",
-            type: "ApiCall",
-            method: "get",
-            path: "webhooks.json",
+            "type": "ApiCall",
+            "method": "get",
+            "path": "webhooks.json",
         });
 
         await shopify.testRun();
