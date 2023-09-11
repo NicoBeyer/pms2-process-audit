@@ -1,14 +1,22 @@
-import {ProcessCreator} from "@nbeyer/pms-process-creator";
-import {FindMessage} from "@nbeyer/beyer-pms2-customerdb";
-import {s3Projection} from "./shopify_orders";
+import {ProcessCreator, ServiceInstance} from "@nbeyer/pms-process-creator";
+import {s3ProjectionPlannedRetentionDate} from "./shopify_orders";
 import {S3QueueConfig} from "@nbeyer/pms-mixin-messagebus";
 import {addFieldsValidateWebhook} from "../helper/transformations";
-import {toAny} from "../../test/helper/helper";
+import {Delay, DelayInstanceConfiguraiton} from "@nbeyer/pms2-delay";
 
 export function shopify_transactions(pc: ProcessCreator) {
 
+    pc.addInstance(new ServiceInstance<Delay>(Delay, {
+        instanceName: "delay-transactions-customerdb",
+        mixins: {
+            mongodb: {
+                uri: process.env.MONGO_DELAY_URI
+            }
+        }
+    } as Omit<DelayInstanceConfiguraiton, "ServiceName">))
+
     // find order in db
-    pc.connectInstance("pms2-shopify-audit", "pms2-customerdb", {
+    pc.connectInstance("pms2-shopify-audit", "audit-noop-shopify", {
         type: "SQSQueue",
         transformation: [
             {$match: {
@@ -22,20 +30,7 @@ export function shopify_transactions(pc: ProcessCreator) {
             }},
             {$project: {
                 transaction: {$json: "$body"}
-            }},
-            {$project: {
-                type: "FIND",
-                collection: "orders",
-                query: {
-                    id: "$transaction.order_id",
-                    pmsSourceName: "beyer-soehne.myshopify.com"
-                },
-                options: {
-                    limit: {$literal: 1},
-                    forward: {$literal: true}
-                },
-                transaction: "$transaction"
-            } as toAny<FindMessage>}
+            }}
         ],
         resultTransformation: {$project: {
             statusCode: {$literal: 200},
@@ -47,7 +42,7 @@ export function shopify_transactions(pc: ProcessCreator) {
     })
 
     // create order path and store to s3
-    pc.connectInstance("pms2-customerdb", null, {
+    pc.connectInstance("audit-noop-shopify", null, {
         type: "S3Queue",
         config: {
             Bucket: "beyer.prod.audit.vault",
@@ -56,12 +51,7 @@ export function shopify_transactions(pc: ProcessCreator) {
         } as S3QueueConfig,
         transformation: [
             {$match: {
-                type: "FOUND",
-                transaction: {$ne: null},
-                document: {$ne: null}
-            }},
-            {$addFields: {
-                order: "$document"
+                transaction: {$ne: null}
             }},
             {$addFields: {
                 Key: {
@@ -72,7 +62,7 @@ export function shopify_transactions(pc: ProcessCreator) {
                         "/",
                         {$substr: ["$order.created_at", 8, 2]}, // day
                         "/",
-                        "$order.name",
+                        "$transaction.order_id",
                         "/transactions/",
                         "$transaction.id",
                         ".json"
@@ -82,10 +72,11 @@ export function shopify_transactions(pc: ProcessCreator) {
                 created_at: "$transaction.created_at",
                 Metadata: {
                     transaction_id: {$toString: "$transaction.id"},
+                    "order_id": {$toString: "$transaction.order_id"},
+                    "shopify_type": "transactions",
                 }
             }},
-            s3Projection
+            s3ProjectionPlannedRetentionDate
         ]
     });
-
 }

@@ -1,12 +1,10 @@
 import {pc} from "../src/pms2-process-audit";
 import {assert} from "chai";
-import _ = require("lodash");
 import {InputDelayMessage} from "@nbeyer/pms2-delay/lib/src/model/messages/Input/InputDelayMessage";
 import {fakeClock} from "./helper/FakeClock";
 import {ServiceInstance} from "@nbeyer/pms-process-creator";
 import {Noop} from "@nbeyer/pms-noop";
-import {DB} from "@nbeyer/beyer-pms2-customerdb";
-import * as ENV from "./helper/env";
+import _ = require("lodash");
 
 process.env.AWS_DEFAULT_REGION = process.env.AWS_DEFAULT_REGION || "eu-west-1";
 process.env.TRACE = "";
@@ -95,9 +93,6 @@ describe("WebhookReset", async function () {
         .connectInstance("pms2-shopify", "noop-unittest", {
             type: "SQSQueue"
         })
-
-        await DB.connect(ENV.MONGO);
-        await DB.disconnect();
     });
 
     afterEach(async function () {

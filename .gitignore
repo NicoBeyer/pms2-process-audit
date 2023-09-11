@@ -90,3 +90,4 @@ fabric.properties
 /test/data/order-test/currentShopifyOrder.json
 /test/data/order-pull-test/actual-orders_2_pages.json
 /test/data/product-test/currentShopifyOrder.json
+/test/debug/data/**

@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@aws-sdk/util-utf8-node": "^3.259.0",
-    "@nbeyer/beyer-pms2-customerdb": "^1.1.37",
     "@nbeyer/pms-event": "^1.1.30",
     "@nbeyer/pms-mixin-messagebus": "^1.4.2",
     "@nbeyer/pms-noop": "^1.1.15",

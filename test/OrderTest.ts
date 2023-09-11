@@ -6,8 +6,6 @@ import * as _ from "lodash";
 import {Noop} from "@nbeyer/pms-noop";
 import {getShopifyUpdateEvent} from "./helper/helper";
 import {GetObjectCommand, S3Client} from "@aws-sdk/client-s3";
-import * as ENV from "./helper/env";
-import {DB} from "@nbeyer/beyer-pms2-customerdb";
 
 process.env.TRACE = "";
 
@@ -64,8 +62,9 @@ describe("OrderTest", async function () {
         const body = JSON.parse(bodyStr);
 
         assert.deepEqual(res.Metadata, {
-            "order_id": "3752251556017",
-            "plannedRetentionDate": (new Date().getFullYear() + 11) + "-01-01"
+            "order_id": "12345678910",
+            "plannedRetentionDate": (new Date().getFullYear() + 11) + "-01-01",
+            "shopify_type": "order"
         })
 
         assert.deepEqual(body, order);
@@ -80,14 +79,13 @@ describe("OrderTest", async function () {
     });
 
     before(async function() {
-        await DB.connect(ENV.MONGO);
-        await DB.disconnect();
     });
 
 });
 
 export const shopifyOrder = JSON.parse(fs.readFileSync("./test/data/order-test/shopifyOrder.json").toString());
 shopifyOrder.created_at = new Date().toISOString();
+shopifyOrder.id = 12345678910;
 const orderUpdateEvent = getShopifyUpdateEvent(_.merge(_.cloneDeep(shopifyOrder), {
 }), "order");
-export const orderKey = `shopify/orders/${shopifyOrder.created_at.substring(0, 4)}/${shopifyOrder.created_at.substring(5, 7)}/${shopifyOrder.created_at.substring(8, 10)}/${shopifyOrder.name}/${shopifyOrder.name}.json`
+export const orderKey = `shopify/orders/${shopifyOrder.created_at.substring(0, 4)}/${shopifyOrder.created_at.substring(5, 7)}/${shopifyOrder.created_at.substring(8, 10)}/${shopifyOrder.id}/${shopifyOrder.name}.json`

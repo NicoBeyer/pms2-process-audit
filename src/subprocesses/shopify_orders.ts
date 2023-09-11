@@ -41,6 +41,9 @@ export function shopify_orders(pc: ProcessCreator) {
             deleteAfterUse: false
         } as S3QueueConfig,
         transformation: [
+            {$match: {
+                order: {$ne: null},
+            }},
             {$addFields: {
                 Key: {
                     $concat: [
@@ -50,28 +53,32 @@ export function shopify_orders(pc: ProcessCreator) {
                         "/",
                         {$substr: ["$order.created_at", 8, 2]}, // day
                         "/",
-                        "$order.name",
+                        "$order.id",
                         "/",
                         "$order.name",
                         ".json"
                     ]
                 },
                 Body: {$base64Encode: {$json: "$order"}},
-                created_at: "$order.created_at"
+                created_at: "$order.created_at",
+
+                Metadata: {
+                    "order_id": {$toString: "$order.id"},
+                    shopify_type: "order",
+                }
             }},
-            s3Projection
+            s3ProjectionPlannedRetentionDate
         ]
     }, "OrderUpdate Step 1: Validate Webhook and encrypt private data.");
 }
 
-export const s3Projection =
+export const s3ProjectionPlannedRetentionDate =
     {$project: {
         del: 1,
         Key: "$Key",
         Body: "$Body",
         ContentType: "application/json",
         Metadata: {$mergeObjects:["$Metadata", {
-            "order_id": {$toString: "$order.id"},
             "plannedRetentionDate": {$concat: [
                 {$toString: {
                     $add: [11,
