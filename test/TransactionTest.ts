@@ -48,7 +48,7 @@ describe("TransactionTest", async function () {
         const body = JSON.parse(bodyStr);
 
         assert.deepEqual(res.Metadata, {
-            "order_id": "3752251556017",
+            "order_id": "12345678910",
             "transaction_id": transaction.id + "",
             "plannedRetentionDate": (new Date().getFullYear() + 11) + "-01-01",
             "shopify_type": "transaction"

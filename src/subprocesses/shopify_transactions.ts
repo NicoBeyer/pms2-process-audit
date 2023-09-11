@@ -56,11 +56,11 @@ export function shopify_transactions(pc: ProcessCreator) {
             {$addFields: {
                 Key: {
                     $concat: [
-                        {$substr: ["$order.created_at", 0, 4]}, // year
+                        {$substr: ["$transaction.created_at", 0, 4]}, // year
                         "/",
-                        {$substr: ["$order.created_at", 5, 2]}, // month
+                        {$substr: ["$transaction.created_at", 5, 2]}, // month
                         "/",
-                        {$substr: ["$order.created_at", 8, 2]}, // day
+                        {$substr: ["$transaction.created_at", 8, 2]}, // day
                         "/",
                         "$transaction.order_id",
                         "/transactions/",
@@ -73,7 +73,7 @@ export function shopify_transactions(pc: ProcessCreator) {
                 Metadata: {
                     transaction_id: {$toString: "$transaction.id"},
                     "order_id": {$toString: "$transaction.order_id"},
-                    "shopify_type": "transactions",
+                    "shopify_type": "transaction",
                 }
             }},
             s3ProjectionPlannedRetentionDate
