@@ -46,7 +46,7 @@ export function shopify_transactions(pc: ProcessCreator) {
         type: "S3Queue",
         config: {
             Bucket: "beyer.prod.audit.vault",
-            Path: "shopify/orders/",
+            Path: "shopify/transactions/",
             deleteAfterUse: false
         } as S3QueueConfig,
         transformation: [
