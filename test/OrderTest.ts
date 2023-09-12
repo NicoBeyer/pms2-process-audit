@@ -1,11 +1,11 @@
 import {assert} from "chai";
 import {Event} from "@nbeyer/pms-event";
-import * as fs from "fs";
 import {pc} from "../src/pms2-process-audit";
 import * as _ from "lodash";
 import {Noop} from "@nbeyer/pms-noop";
 import {getShopifyUpdateEvent} from "./helper/helper";
 import {GetObjectCommand, S3Client} from "@aws-sdk/client-s3";
+import {orderKey, shopifyOrder} from "./helper/order";
 
 process.env.TRACE = "";
 
@@ -81,11 +81,8 @@ describe("OrderTest", async function () {
     before(async function() {
     });
 
+    const orderUpdateEvent = getShopifyUpdateEvent(_.merge(_.cloneDeep(shopifyOrder), {
+    }), "order");
+
 });
 
-export const shopifyOrder = JSON.parse(fs.readFileSync("./test/data/order-test/shopifyOrder.json").toString());
-shopifyOrder.created_at = new Date().toISOString();
-shopifyOrder.id = 12345678910;
-const orderUpdateEvent = getShopifyUpdateEvent(_.merge(_.cloneDeep(shopifyOrder), {
-}), "order");
-export const orderKey = `shopify/orders/${shopifyOrder.created_at.substring(0, 4)}/${shopifyOrder.created_at.substring(5, 7)}/${shopifyOrder.created_at.substring(8, 10)}/${shopifyOrder.id}/${shopifyOrder.name}.json`

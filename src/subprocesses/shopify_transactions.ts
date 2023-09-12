@@ -63,7 +63,7 @@ export function shopify_transactions(pc: ProcessCreator) {
                         {$substr: ["$transaction.created_at", 8, 2]}, // day
                         "/",
                         "$transaction.order_id",
-                        "/transactions/",
+                        "/",
                         "$transaction.id",
                         ".json"
                     ]

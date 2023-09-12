@@ -5,8 +5,8 @@ import {pc} from "../src/pms2-process-audit";
 import * as _ from "lodash";
 import {getShopifyUpdateEvent} from "./helper/helper";
 import {GetObjectCommand, S3Client} from "@aws-sdk/client-s3";
-import {orderKey, shopifyOrder} from "./OrderTest";
 import {Noop} from "@nbeyer/pms-noop";
+import {shopifyOrder} from "./helper/order";
 
 process.env.TRACE = "true";
 
@@ -33,7 +33,7 @@ describe("TransactionTest", async function () {
 
         await noop.testRun();
 
-        const Key = orderKey.replace(/\d+.json/g, "transactions/" + transaction.id + ".json");
+        const Key = `shopify/transactions/${transaction.created_at.substring(0, 4)}/${transaction.created_at.substring(5, 7)}/${transaction.created_at.substring(8, 10)}/${transaction.order_id}/${transaction.id}.json`
 
         const mockS3 = pc.pmsMock.AWS.S3;
 
